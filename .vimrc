@@ -62,6 +62,8 @@ set laststatus=2
 set encoding=utf-8
 let g:Powerline_symbols = 'unicode'
 
+" run the following line before using vundle
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " use plugin manager from gmarik/Vundle.vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
