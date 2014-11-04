@@ -1,4 +1,4 @@
-execute pathogen#infect()
+" execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
@@ -63,6 +63,7 @@ set encoding=utf-8
 let g:Powerline_symbols = 'unicode'
 
 " use plugin manager from gmarik/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
