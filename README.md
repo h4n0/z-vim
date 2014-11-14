@@ -31,3 +31,4 @@ Anyone is free and welcome to clone, update or fork it.
 
 [z-vim]:https://github.com/zhao-han/z-vim.git
 [Vundle]:http://github.com/gmarik/Vundle.vim
+[Git]:http://git-scm.com
