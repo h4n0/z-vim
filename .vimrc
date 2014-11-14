@@ -1,4 +1,4 @@
-execute pathogen#infect()
+" execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
@@ -19,9 +19,6 @@ else
   " set line number on the left
   set number
 
-  " use seoul256 color scheme
-  colorscheme seoul256
-
   if exists("+lines")
     set lines=30
   endif
@@ -34,6 +31,31 @@ set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+" use plugin manager from gmarik/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Make sure you use single quotes
+Plugin 'junegunn/seoul256.vim'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'Yggdroot/indentLine'
+
+" On-demand loading
+Plugin 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'}
+
+Plugin 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+
+call vundle#end()
+
+filetype plugin indent on
+
+" use seoul256 color scheme
+colorscheme seoul256
 
 " set rainbow_parentheses
 let g:rbpt_colorpairs = [
@@ -61,24 +83,3 @@ let g:rbpt_loadcmd_toggle = 0
 set laststatus=2
 set encoding=utf-8
 let g:Powerline_symbols = 'unicode'
-
-" use plugin manager from gmarik/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" Make sure you use single quotes
-Plugin 'junegunn/seoul256.vim'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'Yggdroot/indentLine'
-
-" On-demand loading
-Plugin 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'}
-
-Plugin 'Valloric/YouCompleteMe', { 'do': './install.sh' }
-
-call vundle#end()
-
-filetype plugin indent on
