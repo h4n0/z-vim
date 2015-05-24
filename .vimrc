@@ -1,6 +1,6 @@
-" execute pathogen#infect()
+execute pathogen#infect()
+
 syntax on
-filetype plugin indent on
 
 set nocompatible
 filetype off
@@ -19,12 +19,15 @@ else
   " set line number on the left
   set number
 
-  if exists("+lines")
-    set lines=30
-  endif
-  if exists("+columns")
-    set columns=100
-  endif
+  " use seoul256 color scheme
+  colorscheme seoul256
+
+"  if exists("+lines")
+"    set lines=30
+"  endif
+"  if exists("+columns")
+"    set columns=100
+"  endif
 endif
 
 set smartindent
@@ -33,7 +36,6 @@ set shiftwidth=4
 set expandtab
 
 " use plugin manager from gmarik/Vundle.vim
-set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -44,18 +46,26 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'Yggdroot/indentLine'
+Plugin 'scrooloose/syntastic' 
+Plugin 'ryanss/vim-hackernews'
+Plugin 'fatih/vim-go'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'ervandew/supertab'
 
-" On-demand loading
-Plugin 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'}
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
-Plugin 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-call vundle#end()
-
-filetype plugin indent on
-
-" use seoul256 color scheme
-colorscheme seoul256
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " set rainbow_parentheses
 let g:rbpt_colorpairs = [
@@ -83,3 +93,28 @@ let g:rbpt_loadcmd_toggle = 0
 set laststatus=2
 set encoding=utf-8
 let g:Powerline_symbols = 'unicode'
+
+""""""""""syntastic""""""""""""
+let g:syntastic_check_on_open = 1
+let g:syntastic_cpp_include_dirs = ['/usr/include/']
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+"set error or warning signs
+"let g:syntastic_error_symbol = '✗'
+"let g:syntastic_warning_symbol = '⚠'
+""whether to show balloons
+let g:syntastic_enable_balloons = 1
+
+" On-demand loading
+Plugin 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'}
+
+Plugin 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+
+" Add Rust support
+Plugin 'rust-lang/rust.vim'
+
+call vundle#end()
+
+filetype plugin indent on
