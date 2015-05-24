@@ -20,6 +20,7 @@ Anyone is free and welcome to clone, update or fork it.
     And move `.vimrc` out to ~ directory.
 
     If a `.vimrc` is already existing, you might back it up before replacing.
+    
     `$ mv .vimrc .vimrc_bak`
 
 3. Set up [Vundle]:
