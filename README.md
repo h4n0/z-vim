@@ -17,7 +17,10 @@ Anyone is free and welcome to clone, update or fork it.
 
     `$ git clone https://github.com/zhao-han/z-vim.git`
 
-    And move `.vimrc` out to ~ directory
+    And move `.vimrc` out to ~ directory.
+
+    If a `.vimrc` is already existing, you might back it up before replacing.
+    `$ mv .vimrc .vimrc_bak`
 
 3. Set up [Vundle]:
 
@@ -27,7 +30,9 @@ Anyone is free and welcome to clone, update or fork it.
 
     Launch `vim` and run `:PluginInstall`
 
-    To install from command line: `vim +PluginInstall +qall`
+    Or 
+    
+    Installing from command line: `vim +PluginInstall +qall`
 
 [z-vim]:https://github.com/zhao-han/z-vim.git
 [Vundle]:http://github.com/gmarik/Vundle.vim
