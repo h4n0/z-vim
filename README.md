@@ -34,6 +34,9 @@ Anyone is free and welcome to clone, update or fork it.
     Or 
     
     Installing from command line: `vim +PluginInstall +qall`
+    
+## License
+MIT
 
 [z-vim]:https://github.com/zhao-han/z-vim.git
 [Vundle]:http://github.com/gmarik/Vundle.vim
