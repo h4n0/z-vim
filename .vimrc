@@ -19,9 +19,6 @@ else
   " set line number on the left
   set number
 
-  " use seoul256 color scheme
-  colorscheme seoul256
-
 "  if exists("+lines")
 "    set lines=30
 "  endif
@@ -88,6 +85,9 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
+
+" use seoul256 color scheme
+colorscheme seoul256
 
 " set vim-powerline
 set laststatus=2
