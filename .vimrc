@@ -1,5 +1,3 @@
-execute pathogen#infect()
-
 syntax on
 
 set nocompatible
@@ -33,6 +31,7 @@ set shiftwidth=4
 set expandtab
 
 " use plugin manager from gmarik/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -86,9 +85,6 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
-" use seoul256 color scheme
-colorscheme seoul256
-
 " set vim-powerline
 set laststatus=2
 set encoding=utf-8
@@ -116,5 +112,9 @@ Plugin 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
+
+" use seoul256 color scheme
+colorscheme seoul256
+
 
 filetype plugin indent on
