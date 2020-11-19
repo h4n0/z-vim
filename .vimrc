@@ -3,6 +3,9 @@ syntax on
 set nocompatible
 filetype off
 
+" search first in current directory then file directory for tag file
+set tags=tags;/
+
 set cursorline
 set cursorcolumn
 
@@ -26,9 +29,30 @@ else
 endif
 
 set smartindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
+set clipboard=unnamedplus
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'ryanoasis/vim-devicons'
+Plug 'mhinz/vim-signify'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'ludovicchabant/vim-gutentags'
+call plug#end()
+
+" set up gutentags
+"let g:gutentags_trace = 1
+
+" set up leaderF
+let g:Lf_ShortcutF = '<c-p>'
+noremap <c-n> :LeaderfFunction!<cr>
 
 " use plugin manager from gmarik/Vundle.vim
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -43,15 +67,32 @@ Plugin 'Lokaltog/vim-powerline'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'scrooloose/syntastic' 
-Plugin 'ryanss/vim-hackernews'
 Plugin 'fatih/vim-go'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'ervandew/supertab'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'tpope/vim-fugitive'
+"Plugin 'mindriot101/vim-yapf'
+
+" add clang format params
+let g:clang_format#detect_style_file = 1
+let g:clang_format#auto_format = 1
+let g:clang_format#code_style = 'google'
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : 0,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11",
+            \ "ColumnLimit" : 100,
+            \ "BreakBeforeBraces" : "Allman"}
+
+" config python yapf
+"let g:yapf_style = "google"
 
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " Trigger configuration. Do not use <tab> if you use
@@ -87,7 +128,7 @@ let g:rbpt_loadcmd_toggle = 0
 
 " set vim-powerline
 set laststatus=2
-set encoding=utf-8
+set encoding=UTF-8
 let g:Powerline_symbols = 'unicode'
 
 """"""""""syntastic""""""""""""
@@ -98,10 +139,12 @@ let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 "set error or warning signs
-"let g:syntastic_error_symbol = '✗'
-"let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
 ""whether to show balloons
 let g:syntastic_enable_balloons = 1
+" disable check for python
+let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 
 " On-demand loading
 Plugin 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'}
